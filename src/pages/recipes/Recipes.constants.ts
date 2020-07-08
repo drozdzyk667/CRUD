@@ -23,11 +23,18 @@ export enum Names {
   recipeName = 'Recipe name'
 }
 
-export interface Recipe {
+interface BasicData {
   id: number;
   recipeName: string;
-  ingredients: string[];
   isExpanded: boolean;
+}
+
+export interface Recipe extends BasicData {
+  ingredients: string[];
+}
+
+export interface SubmitForm extends BasicData {
+  ingredients: string;
 }
 
 export const NONE_IS_TOUCHED = 0;
@@ -63,11 +70,11 @@ export const RecipeSchema = Yup.object().shape({
   isExpanded: Yup.boolean()
 });
 
-export const initialFormValues = {
-  id: Math.random().toString(),
+export const initialAddValues = () => ({
+  id: Math.random(),
   recipeName: '',
   ingredients: '',
   isExpanded: false
-};
+});
 
 export const WARNING_MESSAGE = 'Are you sure?, Recipe will be lost !';

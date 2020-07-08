@@ -4,9 +4,10 @@ import { Formik, Form } from 'formik';
 import FormikField from '../formik';
 import {
   Names,
-  initialFormValues,
+  initialAddValues,
   RecipeSchema,
-  NONE_IS_TOUCHED
+  NONE_IS_TOUCHED,
+  SubmitForm
 } from 'pages/recipes/Recipes.constants';
 import {
   Box,
@@ -47,7 +48,7 @@ const useStyles = makeStyles({
 
 interface FormProps {
   type: string;
-  recipe?: Recipe;
+  recipe: Recipe | undefined;
   isFormOpen: boolean;
   handleCloseForm: () => void;
   handleSubmitForm: (data: any) => void;
@@ -62,24 +63,30 @@ const RecipeForm: React.FC<FormProps> = ({
 }) => {
   const classes = useStyles();
 
-  const convertIngredientsToPlainText = recipe?.ingredients.join(', ');
-
-  const initialEditValues = {
-    id: recipe?.id,
-    recipeName: recipe?.recipeName,
-    isExpanded: recipe?.isExpanded,
-    ingredients: convertIngredientsToPlainText
+  const initialEditValues = () => {
+    if (recipe) {
+      const convertIngredientsToPlainText = recipe.ingredients.join(', ');
+      return {
+        id: recipe.id,
+        recipeName: recipe.recipeName,
+        isExpanded: recipe.isExpanded,
+        ingredients: convertIngredientsToPlainText
+      };
+    }
   };
+
+  const initialValues: SubmitForm =
+    recipe && type === Names.edit
+      ? initialEditValues() ?? initialAddValues()
+      : initialAddValues();
 
   return (
     <Dialog fullWidth open={isFormOpen} onClose={handleCloseForm}>
       <Formik
+        enableReinitialize
         onSubmit={handleSubmitForm}
-        initialValues={
-          type === Names.edit ? initialEditValues : initialFormValues
-        }
+        initialValues={initialValues}
         validationSchema={RecipeSchema}
-        enableReinitialize={true}
       >
         {({ touched, isSubmitting, isValid }) => {
           const isNoneTouched = Object.keys(touched).length === NONE_IS_TOUCHED;
@@ -122,7 +129,7 @@ const RecipeForm: React.FC<FormProps> = ({
                     color='primary'
                     type='submit'
                   >
-                    {Names.add}
+                    {Names.confirm}
                   </Button>
                   <Button
                     onClick={handleCloseForm}

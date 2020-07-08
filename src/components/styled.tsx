@@ -30,11 +30,11 @@ export const ControlsContainer = styled.div`
   height: 10vh;
 `;
 
-export const Button = styled.button`
-  background: ${props => props.background};
-  color: ${props => (props.black ? Colors.black : Colors.white)};
-  border-color: ${props =>
-    props.background === Colors.white ? Colors.black : props.background};
+export const Button = styled.button<{ black?: boolean; background: string }>`
+  background: ${({ background }) => background};
+  color: ${({ black }) => (black ? Colors.black : Colors.white)};
+  border-color: ${({ background }) =>
+    background === Colors.white ? Colors.black : background};
   border-width: 2px;
   font-size: 1em;
   margin: 0.5em;

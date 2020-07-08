@@ -74,8 +74,11 @@ const RecipeElement: React.FC<RecipeProps> = ({
             {Names.ingredients}
           </Typography>
           <Box>
-            {recipe.ingredients.map((ingredient, index) => (
-              <IngredientContainer className={classes.textWrap} key={index}>
+            {recipe.ingredients.map((ingredient: string, index: number) => (
+              <IngredientContainer
+                className={classes.textWrap}
+                key={`${ingredient}-${index}`}
+              >
                 {ingredient}
               </IngredientContainer>
             ))}

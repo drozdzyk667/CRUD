@@ -33,15 +33,19 @@ const RecipeControls: React.FC<RecipeControlProps> = ({
   handleDeleteRecipe
 }) => {
   const classes = useStyles();
-  const [isDeleteModal, setIsDeleteModal] = React.useState(false);
+  const [isConfirmationModalOpen, setIsConfirmationModalOpen] = React.useState(
+    false
+  );
 
   const toggleConfirmationModal = () => {
-    setIsDeleteModal(isDeleteModal => !isDeleteModal);
+    setIsConfirmationModalOpen(
+      isConfirmationModalOpen => !isConfirmationModalOpen
+    );
   };
 
   const handleConfirmDelete = () => {
     handleDeleteRecipe(recipe.id);
-    setIsDeleteModal(false);
+    setIsConfirmationModalOpen(false);
   };
 
   return (
@@ -65,7 +69,7 @@ const RecipeControls: React.FC<RecipeControlProps> = ({
         </Button>
       </ButtonsContainer>
       <ConfirmationModal
-        isDeleteModal={isDeleteModal}
+        isConfirmationModalOpen={isConfirmationModalOpen}
         handleConfirmDelete={handleConfirmDelete}
         toggleConfirmationModal={toggleConfirmationModal}
         message={WARNING_MESSAGE}

@@ -1,18 +1,20 @@
 import React from 'react';
 import Header from 'components/header';
-import { Recipe } from './Recipes.constants';
+import { Recipe, SubmitForm } from './Recipes.constants';
 import Controls from 'components/controls';
 import RecipesListContainer from 'components/recipesList';
 import RecipeForm from 'components/recipesList/RecipeForm';
 
 const RecipesContainer = () => {
-  const localRecipes = JSON.parse(localStorage.getItem('storageRecipes'));
+  const localRecipes = localStorage.getItem('storageRecipes');
   const [isFormOpen, setIsFormOpen] = React.useState<boolean>(false);
   const [formType, setFormType] = React.useState<string>('');
   const [formElement, setFormElement] = React.useState<Recipe | undefined>(
     undefined
   );
-  const [recipes, setRecipes] = React.useState<Recipe[]>(localRecipes ?? []);
+  const [recipes, setRecipes] = React.useState<Recipe[]>(
+    localRecipes !== null ? JSON.parse(localRecipes) : []
+  );
 
   const handleOpenForm = (type: string, element?: Recipe) => {
     setFormType(type);
@@ -44,11 +46,15 @@ const RecipesContainer = () => {
     setRecipes(r => r.map(recipe => ({ ...recipe, isExpanded: false })));
   }, []);
 
-  const handleSubmitForm = data => {
+  const handleSubmitForm = (data: SubmitForm) => {
     const hasRecipe = recipes.find(recipe => recipe.id === data.id);
     const ingredientsToArray = data?.ingredients
-      ?.split(',')
-      .reduce((arr, item) => (item.trim() ? [...arr, item.trim()] : arr), []);
+      .split(',')
+      .reduce(
+        (arr: string[], item: string) =>
+          item.trim() ? [...arr, item.trim()] : arr,
+        []
+      );
 
     if (hasRecipe) {
       setRecipes(
@@ -66,8 +72,7 @@ const RecipesContainer = () => {
       setRecipes([
         ...recipes,
         {
-          id: Math.random(),
-          isExpanded: false,
+          ...data,
           recipeName: data.recipeName.trim(),
           ingredients: ingredientsToArray
         }

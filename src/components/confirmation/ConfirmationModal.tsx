@@ -17,21 +17,21 @@ const useStyles = makeStyles({
 
 interface Props {
   message: string;
-  isDeleteModal: boolean;
+  isConfirmationModalOpen: boolean;
   toggleConfirmationModal: () => void;
   handleConfirmDelete: () => void;
 }
 
 const ConfirmationModal: React.FC<Props> = ({
   message,
-  isDeleteModal,
+  isConfirmationModalOpen,
   toggleConfirmationModal,
   handleConfirmDelete
 }) => {
   const classes = useStyles();
 
   return (
-    <Dialog open={isDeleteModal} onClose={toggleConfirmationModal}>
+    <Dialog open={isConfirmationModalOpen} onClose={toggleConfirmationModal}>
       <DialogContent>
         <Typography className={classes.text} variant='h5'>
           {message}

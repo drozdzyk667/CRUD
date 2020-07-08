@@ -32,6 +32,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: 'auto auto',
     marginBottom: '50px',
     borderBottom: `2px solid ${Colors.gray}`
+  },
+  textWrap: {
+    width: 'calc(100vw - 120px)',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis'
   }
 }));
 
@@ -59,7 +65,9 @@ const RecipeElement: React.FC<RecipeProps> = ({
           className={classes.summary}
           expandIcon={<ExpandMoreIcon />}
         >
-          <Typography variant='h4'>{recipe.recipeName}</Typography>
+          <Typography className={classes.textWrap} variant='h4'>
+            {recipe.recipeName}
+          </Typography>
         </AccordionSummary>
         <AccordionDetails className={classes.details}>
           <Typography className={classes.title} variant='h5'>
@@ -67,7 +75,7 @@ const RecipeElement: React.FC<RecipeProps> = ({
           </Typography>
           <Box>
             {recipe.ingredients.map((ingredient, index) => (
-              <IngredientContainer key={index}>
+              <IngredientContainer className={classes.textWrap} key={index}>
                 {ingredient}
               </IngredientContainer>
             ))}

@@ -30,9 +30,13 @@ export interface Recipe {
   isExpanded: boolean;
 }
 
+export const NONE_IS_TOUCHED = 0;
 export const MIN_INPUT_LENGTH = 3;
 export const MAX_RECIPE_NAME_LENGTH = 50;
 export const MAX_INGREDIENTS_LENGTH = 100;
+
+// 700px window width
+export const NARROW_FORM_VIEW = 700;
 
 export const RecipeSchema = Yup.object().shape({
   id: Yup.number(),
@@ -43,7 +47,7 @@ export const RecipeSchema = Yup.object().shape({
     )
     .max(
       MAX_RECIPE_NAME_LENGTH,
-      'The maximum length of the Recipe Name is 50 characters'
+      'The maximum length of the Recipe Name is 30 characters'
     )
     .required('Required field'),
   ingredients: Yup.string()

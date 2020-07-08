@@ -1,10 +1,12 @@
 import React from 'react';
+import Icon from 'Icons';
 import { Formik, Form } from 'formik';
 import FormikField from '../formik';
 import {
   Names,
   initialFormValues,
-  RecipeSchema
+  RecipeSchema,
+  NONE_IS_TOUCHED
 } from 'pages/recipes/Recipes.constants';
 import {
   Box,
@@ -28,17 +30,27 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     justifyContent: 'center'
   },
-  input: {
-    margin: 0
+  dialogClose: {
+    marginLeft: 'auto',
+    cursor: 'pointer',
+    margin: '0.5em',
+    transition: '0.3s',
+    '&:hover': {
+      transform: 'scale(1.2)'
+    }
+  },
+  header: {
+    display: 'flex',
+    flexDirection: 'row'
   }
 });
 
 interface FormProps {
-  isFormOpen: boolean;
-  onSubmit: (data: any) => void;
-  handleCloseForm: () => void;
   type: string;
   recipe?: Recipe;
+  isFormOpen: boolean;
+  handleCloseForm: () => void;
+  onSubmit: (data: any) => void;
 }
 
 const RecipeForm: React.FC<FormProps> = ({
@@ -69,14 +81,20 @@ const RecipeForm: React.FC<FormProps> = ({
         validationSchema={RecipeSchema}
         enableReinitialize={true}
       >
-        {props => {
-          const NONE_IS_TOUCHED = 0;
-          const isNoneTouched =
-            Object.keys(props.touched).length === NONE_IS_TOUCHED;
-          const isDisabled = props.isSubmitting || !props.isValid;
+        {({ touched, isSubmitting, isValid }) => {
+          const isNoneTouched = Object.keys(touched).length === NONE_IS_TOUCHED;
+          const isDisabled = isSubmitting || !isValid;
+
           return (
             <Form>
-              <DialogTitle>{type}</DialogTitle>
+              <Box className={classes.header}>
+                <DialogTitle>{type}</DialogTitle>
+                <Icon
+                  onClick={handleCloseForm}
+                  className={classes.dialogClose}
+                  name='Close'
+                />
+              </Box>
               <Divider />
               <Box className={classes.container}>
                 <DialogContent className={classes.content}>
@@ -115,7 +133,7 @@ const RecipeForm: React.FC<FormProps> = ({
                   </Button>
                 </DialogActions>
               </Box>
-              {props.isSubmitting && <LinearProgress />}
+              {isSubmitting && <LinearProgress />}
             </Form>
           );
         }}

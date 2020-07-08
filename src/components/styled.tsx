@@ -37,11 +37,12 @@ export const Button = styled.button`
     props.background === Colors.white ? Colors.black : props.background};
   border-width: 2px;
   font-size: 1em;
-  margin: 1em;
+  margin: 0.5em;
   font-weight: bold;
   letter-spacing: 1px;
   outline: none;
-  padding: 0.7em 1.2em;
+  min-height: 45px;
+  padding: 0.4em 0.6em;
   border-radius: 5px;
   cursor: pointer;
   transition: 0.2s;
@@ -52,7 +53,8 @@ export const Button = styled.button`
 
 export const ButtonsContainer = styled.div`
   border-top: 1px solid ${Colors.gray};
-  margin: 1em;
   margin-top: 3em;
+  display: flex;
+  justify-content: flex-end;
   height: 5vh;
 `;

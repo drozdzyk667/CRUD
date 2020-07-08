@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Colors } from 'pages/recipes/Recipes.constants';
+import { Colors, NARROW_FORM_VIEW } from 'pages/recipes/Recipes.constants';
 import { Field, ErrorMessage } from 'formik';
+import { useWindowProperties } from 'helpers/useWidth';
 
 const useStyles = makeStyles({
   field: (props: any) => ({
@@ -42,11 +43,15 @@ const FormikField: React.FC<Props> = ({
   ...restProps
 }) => {
   const classes = useStyles({ margin });
+  const { width } = useWindowProperties();
+  const isNarrowView = width < NARROW_FORM_VIEW;
 
   return (
     <div>
       <Field type={type} name={name} className={classes.field} {...restProps} />
-      {required ? <span className={classes.required}>{'*'}</span> : null}
+      {!isNarrowView && required ? (
+        <span className={classes.required}>{'*'}</span>
+      ) : null}
       <ErrorMessage component='div' className={classes.error} name={name} />
     </div>
   );

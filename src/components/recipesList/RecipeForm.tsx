@@ -14,7 +14,8 @@ import {
   DialogContent,
   DialogTitle,
   Divider,
-  Dialog
+  Dialog,
+  LinearProgress
 } from '@material-ui/core';
 import { Recipe } from 'pages/recipes/Recipes.constants';
 
@@ -68,38 +69,56 @@ const RecipeForm: React.FC<FormProps> = ({
         validationSchema={RecipeSchema}
         enableReinitialize={true}
       >
-        <Form>
-          <DialogTitle>{type}</DialogTitle>
-          <Divider />
-          <Box className={classes.container}>
-            <DialogContent className={classes.content}>
-              <FormikField
-                required
-                placeholder={Names.recipeName}
-                name={'recipeName'}
-                margin='1em 0'
-              />
-              <FormikField
-                required
-                name={'ingredients'}
-                placeholder={Names.ingredients}
-                margin='1em 0'
-              />
-            </DialogContent>
-            <DialogActions>
-              <Button variant='contained' color='primary' type='submit'>
-                {Names.add}
-              </Button>
-              <Button
-                onClick={handleCloseForm}
-                variant='contained'
-                color='default'
-              >
-                {Names.cancel}
-              </Button>
-            </DialogActions>
-          </Box>
-        </Form>
+        {props => {
+          const NONE_IS_TOUCHED = 0;
+          const isNoneTouched =
+            Object.keys(props.touched).length === NONE_IS_TOUCHED;
+          const isDisabled = props.isSubmitting || !props.isValid;
+          return (
+            <Form>
+              <DialogTitle>{type}</DialogTitle>
+              <Divider />
+              <Box className={classes.container}>
+                <DialogContent className={classes.content}>
+                  <FormikField
+                    required
+                    placeholder={Names.recipeName}
+                    name={'recipeName'}
+                    margin='1em 0'
+                  />
+                  <FormikField
+                    required
+                    name={'ingredients'}
+                    placeholder={Names.ingredients}
+                    margin='1em 0'
+                  />
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    disabled={
+                      type === Names.edit
+                        ? isDisabled
+                        : isDisabled || isNoneTouched
+                    }
+                    variant='contained'
+                    color='primary'
+                    type='submit'
+                  >
+                    {Names.add}
+                  </Button>
+                  <Button
+                    onClick={handleCloseForm}
+                    variant='contained'
+                    color='default'
+                  >
+                    {Names.cancel}
+                  </Button>
+                </DialogActions>
+              </Box>
+              {props.isSubmitting && <LinearProgress />}
+            </Form>
+          );
+        }}
       </Formik>
     </Dialog>
   );

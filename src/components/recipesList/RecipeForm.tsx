@@ -50,15 +50,15 @@ interface FormProps {
   recipe?: Recipe;
   isFormOpen: boolean;
   handleCloseForm: () => void;
-  onSubmit: (data: any) => void;
+  handleSubmitForm: (data: any) => void;
 }
 
 const RecipeForm: React.FC<FormProps> = ({
   type,
   recipe,
-  onSubmit,
   isFormOpen,
-  handleCloseForm
+  handleCloseForm,
+  handleSubmitForm
 }) => {
   const classes = useStyles();
 
@@ -74,7 +74,7 @@ const RecipeForm: React.FC<FormProps> = ({
   return (
     <Dialog fullWidth open={isFormOpen} onClose={handleCloseForm}>
       <Formik
-        onSubmit={onSubmit}
+        onSubmit={handleSubmitForm}
         initialValues={
           type === Names.edit ? initialEditValues : initialFormValues
         }

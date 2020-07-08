@@ -44,7 +44,7 @@ const RecipesContainer = () => {
     setRecipes(r => r.map(recipe => ({ ...recipe, isExpanded: false })));
   }, []);
 
-  const onSubmit = data => {
+  const handleSubmitForm = data => {
     const hasRecipe = recipes.find(recipe => recipe.id === data.id);
     const ingredientsToArray = data?.ingredients
       ?.split(',')
@@ -85,29 +85,24 @@ const RecipesContainer = () => {
   }, [recipes]);
 
   const formProps = {
+    handleSubmitForm,
     handleCloseForm,
+    isFormOpen
+  };
+
+  const recipesProps = {
+    recipes,
     handleOpenForm,
-    isFormOpen,
-    onSubmit
+    handleDeleteRecipe,
+    handleExpandOnlyOneRecipe
   };
 
   return (
     <>
       <Header />
-      <RecipesListContainer
-        {...formProps}
-        recipes={recipes}
-        handleDeleteRecipe={handleDeleteRecipe}
-        handleExpandOnlyOneRecipe={handleExpandOnlyOneRecipe}
-      />
+      <RecipesListContainer {...recipesProps} />
       <Controls handleOpenForm={handleOpenForm} />
-      <RecipeForm
-        type={formType}
-        recipe={formElement}
-        onSubmit={onSubmit}
-        isFormOpen={isFormOpen}
-        handleCloseForm={handleCloseForm}
-      />
+      <RecipeForm {...formProps} type={formType} recipe={formElement} />
     </>
   );
 };

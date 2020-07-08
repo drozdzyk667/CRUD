@@ -2,7 +2,7 @@ import React from 'react';
 import { RecipesContainer } from '../styled';
 import RecipeElement from './RecipeElement';
 import RecipeControls from './RecipeControls';
-import { Recipe } from '../../pages/recipes/Recipes.constants';
+import { Recipe } from 'pages/recipes/Recipes.constants';
 
 interface RecipesProps {
   recipes: Recipe[];

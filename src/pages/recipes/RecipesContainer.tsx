@@ -1,9 +1,9 @@
 import React from 'react';
-import Header from '../../components/header';
+import Header from 'components/header';
 import { Recipe } from './Recipes.constants';
-import Controls from '../../components/controls';
-import RecipesListContainer from '../../components/recipesList';
-import RecipeForm from '../../components/recipesList/RecipeForm';
+import Controls from 'components/controls';
+import RecipesListContainer from 'components/recipesList';
+import RecipeForm from 'components/recipesList/RecipeForm';
 
 const RecipesContainer = () => {
   const localRecipes = JSON.parse(localStorage.getItem('storageRecipes'));
@@ -48,8 +48,7 @@ const RecipesContainer = () => {
     const hasRecipe = recipes.find(recipe => recipe.id === data.id);
     const ingredientsToArray = data?.ingredients
       ?.split(',')
-      .map(elem => elem.trim())
-      .filter(item => item);
+      .reduce((arr, item) => (item.trim() ? [...arr, item.trim()] : arr), []);
 
     if (hasRecipe) {
       setRecipes(

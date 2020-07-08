@@ -7,7 +7,7 @@ import {
   DialogActions,
   Typography
 } from '@material-ui/core';
-import { Names } from '../../pages/recipes/Recipes.constants';
+import { Names } from 'pages/recipes/Recipes.constants';
 
 const useStyles = makeStyles({
   text: {

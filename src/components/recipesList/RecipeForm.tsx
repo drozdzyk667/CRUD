@@ -5,7 +5,7 @@ import {
   Names,
   initialFormValues,
   RecipeSchema
-} from '../../pages/recipes/Recipes.constants';
+} from 'pages/recipes/Recipes.constants';
 import {
   Box,
   Button,
@@ -16,7 +16,7 @@ import {
   Divider,
   Dialog
 } from '@material-ui/core';
-import { Recipe } from '../../pages/recipes/Recipes.constants';
+import { Recipe } from 'pages/recipes/Recipes.constants';
 
 const useStyles = makeStyles({
   container: {

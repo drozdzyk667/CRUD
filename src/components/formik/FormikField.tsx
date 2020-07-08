@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Colors } from '../../pages/recipes/Recipes.constants';
+import { Colors } from 'pages/recipes/Recipes.constants';
 import { Field, ErrorMessage } from 'formik';
 
 const useStyles = makeStyles({

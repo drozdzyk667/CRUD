@@ -1,6 +1,6 @@
 import React from 'react';
 import { ControlsContainer, Button } from '../styled';
-import { Colors, Names } from '../../pages/recipes/Recipes.constants';
+import { Colors, Names } from 'pages/recipes/Recipes.constants';
 
 interface ControlProps {
   handleOpenForm: (type: string) => void;

@@ -5,7 +5,7 @@ import {
   Names,
   Colors,
   WARNING_MESSAGE
-} from '../../pages/recipes/Recipes.constants';
+} from 'pages/recipes/Recipes.constants';
 import ConfirmationModal from '../confirmation';
 
 interface RecipeControlProps {

@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import { IngredientContainer } from '../styled';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { Recipe, Names, Colors } from '../../pages/recipes/Recipes.constants';
+import { Recipe, Names, Colors } from 'pages/recipes/Recipes.constants';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {

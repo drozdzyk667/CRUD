@@ -4,7 +4,6 @@ import { Formik, Form } from 'formik';
 import FormikField from '../formik';
 import {
   Names,
-  initialAddValues,
   RecipeSchema,
   NONE_IS_TOUCHED,
   SubmitForm
@@ -53,6 +52,13 @@ interface FormProps {
   handleCloseForm: () => void;
   handleSubmitForm: (data: any) => void;
 }
+
+const initialAddValues = () => ({
+  id: Math.random(),
+  recipeName: '',
+  ingredients: '',
+  isExpanded: false
+});
 
 const RecipeForm: React.FC<FormProps> = ({
   type,

@@ -70,11 +70,4 @@ export const RecipeSchema = Yup.object().shape({
   isExpanded: Yup.boolean()
 });
 
-export const initialAddValues = () => ({
-  id: Math.random(),
-  recipeName: '',
-  ingredients: '',
-  isExpanded: false
-});
-
 export const WARNING_MESSAGE = 'Are you sure?, Recipe will be lost !';

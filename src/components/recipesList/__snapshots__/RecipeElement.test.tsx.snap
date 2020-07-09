@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RecipeElement should render correctly  1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(Accordion))
+    className="makeStyles-root-1"
+    expanded={false}
+    onChange={[Function]}
+  >
+    <WithStyles(ForwardRef(AccordionSummary))
+      className="makeStyles-summary-2"
+      expandIcon={<UNDEFINED />}
+    >
+      <WithStyles(ForwardRef(Typography))
+        className="makeStyles-textWrap-5"
+        variant="h4"
+      >
+        Test Recipe
+      </WithStyles(ForwardRef(Typography))>
+    </WithStyles(ForwardRef(AccordionSummary))>
+    <WithStyles(ForwardRef(AccordionDetails))
+      className="makeStyles-details-3"
+    >
+      <WithStyles(ForwardRef(Typography))
+        className="makeStyles-title-4"
+        data-testid="Ingredients"
+        variant="h5"
+      >
+        Ingredients
+      </WithStyles(ForwardRef(Typography))>
+      <Styled(MuiBox)>
+        <styled.div
+          className="makeStyles-textWrap-5"
+          key="test1-0"
+        >
+          test1
+        </styled.div>
+        <styled.div
+          className="makeStyles-textWrap-5"
+          key="test2-1"
+        >
+          test2
+        </styled.div>
+        <styled.div
+          className="makeStyles-textWrap-5"
+          key="test3-2"
+        >
+          test3
+        </styled.div>
+      </Styled(MuiBox)>
+      <WithStyles(ForwardRef(AccordionActions))>
+        <RecipeControls
+          handleDeleteRecipe={[MockFunction]}
+          handleOpenForm={[MockFunction]}
+          recipe={
+            Object {
+              "id": 1,
+              "ingredients": Array [
+                "test1",
+                "test2",
+                "test3",
+              ],
+              "isExpanded": false,
+              "recipeName": "Test Recipe",
+            }
+          }
+        />
+      </WithStyles(ForwardRef(AccordionActions))>
+    </WithStyles(ForwardRef(AccordionDetails))>
+  </WithStyles(ForwardRef(Accordion))>
+</Fragment>
+`;

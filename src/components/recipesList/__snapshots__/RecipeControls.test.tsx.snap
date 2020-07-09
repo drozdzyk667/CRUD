@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RecipeElement should render correctly  1`] = `
+<Fragment>
+  <styled.div>
+    <styled.button
+      background="#ed5b3e"
+      data-testid="delete-button"
+      onClick={[Function]}
+    >
+      <Styled(MuiBox)
+        className="makeStyles-container-1"
+      >
+        <span
+          className="makeStyles-text-2"
+          data-testid="Delete"
+        >
+          Delete
+        </span>
+        <ForwardRef
+          name="Delete"
+        />
+      </Styled(MuiBox)>
+    </styled.button>
+    <styled.button
+      background="#FFF"
+      black={true}
+      onClick={[Function]}
+    >
+      <Styled(MuiBox)
+        className="makeStyles-container-1"
+        data-testid="edit-button"
+      >
+        <span
+          className="makeStyles-text-2"
+          data-testid="Edit"
+        >
+          Edit
+        </span>
+        <ForwardRef
+          name="Edit"
+        />
+      </Styled(MuiBox)>
+    </styled.button>
+  </styled.div>
+  <ConfirmationModal
+    handleConfirmDelete={[Function]}
+    isConfirmationModalOpen={false}
+    message="Are you sure?, Recipe will be lost !"
+    toggleConfirmationModal={[Function]}
+  />
+</Fragment>
+`;

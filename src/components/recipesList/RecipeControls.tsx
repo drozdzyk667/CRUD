@@ -51,9 +51,15 @@ const RecipeControls: React.FC<RecipeControlProps> = ({
   return (
     <>
       <ButtonsContainer>
-        <Button background={Colors.delete} onClick={toggleConfirmationModal}>
+        <Button
+          data-testid={'delete-button'}
+          background={Colors.delete}
+          onClick={toggleConfirmationModal}
+        >
           <Box className={classes.container}>
-            <span className={classes.text}>{Names.delete}</span>
+            <span data-testid={Names.delete} className={classes.text}>
+              {Names.delete}
+            </span>
             <Icon name='Delete' />
           </Box>
         </Button>
@@ -62,8 +68,10 @@ const RecipeControls: React.FC<RecipeControlProps> = ({
           background={Colors.edit}
           onClick={() => handleOpenForm(Names.edit, recipe)}
         >
-          <Box className={classes.container}>
-            <span className={classes.text}>{Names.edit}</span>
+          <Box data-testid={'edit-button'} className={classes.container}>
+            <span data-testid={Names.edit} className={classes.text}>
+              {Names.edit}
+            </span>
             <Icon name='Edit' />
           </Box>
         </Button>

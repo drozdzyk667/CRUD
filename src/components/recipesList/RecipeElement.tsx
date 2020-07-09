@@ -70,7 +70,11 @@ const RecipeElement: React.FC<RecipeProps> = ({
           </Typography>
         </AccordionSummary>
         <AccordionDetails className={classes.details}>
-          <Typography className={classes.title} variant='h5'>
+          <Typography
+            data-testid={Names.ingredients}
+            className={classes.title}
+            variant='h5'
+          >
             {Names.ingredients}
           </Typography>
           <Box>

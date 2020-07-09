@@ -23,9 +23,15 @@ const Controls: React.FC<ControlProps> = ({ handleOpenForm }) => {
   const classes = useStyles();
   return (
     <ControlsContainer>
-      <Button onClick={() => handleOpenForm(Names.add)} background={Colors.add}>
+      <Button
+        data-testid={'add-button'}
+        onClick={() => handleOpenForm(Names.add)}
+        background={Colors.add}
+      >
         <Box className={classes.container}>
-          <span className={classes.text}>{Names.add}</span>
+          <span data-testid={Names.add} className={classes.text}>
+            {Names.add}
+          </span>
           <Icon name='Add' />
         </Box>
       </Button>

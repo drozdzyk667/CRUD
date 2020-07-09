@@ -31,13 +31,18 @@ const ConfirmationModal: React.FC<Props> = ({
   const classes = useStyles();
 
   return (
-    <Dialog open={isConfirmationModalOpen} onClose={toggleConfirmationModal}>
+    <Dialog
+      data-testid={'delete-dialog'}
+      open={isConfirmationModalOpen}
+      onClose={toggleConfirmationModal}
+    >
       <DialogContent>
         <Typography className={classes.text} variant='h5'>
           {message}
         </Typography>
         <DialogActions>
           <Button
+            data-testid={'confirm-delete'}
             variant='contained'
             color='secondary'
             onClick={handleConfirmDelete}

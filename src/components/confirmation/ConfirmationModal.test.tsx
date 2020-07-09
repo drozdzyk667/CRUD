@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import ConfirmationModal from './ConfirmationModal';
 import { WARNING_MESSAGE } from 'pages/recipes/Recipes.constants';
-import { Typography, Dialog } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { RecipeMock } from 'testUtils/recipe';
 
 describe('RecipeElement', () => {
